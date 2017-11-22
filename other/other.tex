@@ -9,28 +9,23 @@
 % \subsection{Fast IO}
 % \lstinputlisting{other/fastIO.cpp}
 
+\subsection{Rekursiver Abstieg und Abstrakter Syntaxbaum}
+\lstinputlisting{other/parser.cpp}
+
 \subsection{Sonstiges}
 \begin{lstlisting}
 // Alles-Header.
 #include <bits/stdc++.h>
-
-// Setzt das deutsche Tastaturlayout.
-setxkbmap de
-
 // Schnelle Ein-/Ausgabe mit cin/cout.
 ios::sync_with_stdio(false);
-
-// Set mit eigener Sortierfunktion. Typ muss nicht explizit angegeben werden.
+cin.tie(NULL);
+// Set mit eigener Sortierfunktion.
 set<point2, decltype(comp)> set1(comp);
-
 // PI
 #define PI (2*acos(0))
-
 // STL-Debugging, Compiler flags.
 -D_GLIBCXX_DEBUG
-#define _GLIBCXX_DEBUG
-
-// 128-Bit Integer/Float. Muss zum Einlesen/Ausgeben in einen int oder long long gecastet werden.
+// 128-Bit Integer/Float. Zum Einlesen/Ausgeben in long long casten.
 __int128, __float128
 \end{lstlisting}
 
@@ -101,6 +96,15 @@ $n$ Personen im Kreis, jeder $k$-te wird erschossen.
 		[X/G] = \frac{1}{\vert G \vert} \sum_{g \in G} \vert X^g \vert
 	\]
 
+	\item \textbf{\textsc{Polya} Counting:}
+	Sei $\pi$ eine Permutation der Menge $X$.
+	Die Elemente von $X$ können mit einer von $m$ Farben gefärbt werden.
+	Die Anzahl der Färbungen, die Fixpunkte von $\pi$ sind, ist $m^{\#(\pi)}$, wobei $\#(\pi)$ die Anzahl der Zyklen von $\pi$ ist.
+	Die Anzahl der Färbungen von Objekten einer Menge $X$ mit $m$ Farben unter einer Symmetriegruppe $G$ is gegeben durch:
+	\[
+		[X/G] = \frac{1}{\vert G \vert} \sum_{g \in G} m^{\#(g)}
+	\]
+
 	\item \textbf{Verteilung von Primzahlen:}
 	Für alle $n \in \mathbb{N}$ gilt: Ex existiert eine Primzahl $p$ mit $n \leq p \leq 2n$.
 
@@ -142,6 +146,28 @@ $n$ Personen im Kreis, jeder $k$-te wird erschossen.
 	\textbf{Centroid Decomposition:}
 	Wähle zufälligen Knoten und mache DFS.
 	Verschiebe ausgewählten Knoten in Richtung des tiefsten Teilbaums, bis Centroid gefunden. Entferne Knoten, mache rekursiv in Teilbäumen weiter. Laufzeit:~$\mathcal{O}(\vert V \vert \log(\vert V \vert))$.
+
+	\item \textbf{Kreuzprodukt}
+	\[
+		a \times b =
+		\begin{pmatrix}
+			a_1 \\
+			a_2 \\
+			a_3
+		\end{pmatrix}
+		\times
+		\begin{pmatrix}
+			b_1 \\
+			b_2 \\
+			b_3
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+				a_2b_3 - a_3b_2 \\
+				a_3b_1 - a_1b_3 \\
+				a_1b_2 - a_2b_1
+		\end{pmatrix}
+	\]
 \end{itemize}
 
 \subsection{Tipps \& Tricks}
@@ -149,10 +175,10 @@ $n$ Personen im Kreis, jeder $k$-te wird erschossen.
 \begin{itemize}
 	\item Run Tim Error:
 	\begin{itemize}
-		\item Stack Overflow? Evtl. rekurisve Tiefensuche auf langem Pfad?
 		\item Array-Grenzen überprüfen. Indizierung bei $0$ oder bei $1$ beginnen?
 		\item Abbruchbedingung bei Rekursion?
 		\item Evtl. Memory Limit Exceeded?
+		\item $n$ und $m$ verwechselt?
 	\end{itemize}
 
 	\item Gleitkommazahlen:
@@ -173,7 +199,6 @@ $n$ Personen im Kreis, jeder $k$-te wird erschossen.
 			\item $n = 0$, $n = -1$, $n = 1$, $n = 2^{31}-1$, $n = -2^{31} = 2147483648$
 			\item $n$ gerade/ungerade
 			\item Graph ist leer/enthält nur einen Knoten.
-			\item Liste ist leer/enthält nur ein Element.
 			\item Graph ist Multigraph (enthält Schleifen/Mehrfachkanten).
 			\item Sind Kanten gerichtet/ungerichtet?
 			\item Polygon ist konkav/selbstschneidend.
