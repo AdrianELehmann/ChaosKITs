@@ -14,7 +14,7 @@ deploy:
     secure: $key
   file_glob: true
   file:
-  - _build/*.pdf
+  - tcr.pdf
   skip_cleanup: true
   on:
    branch: master
